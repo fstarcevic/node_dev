@@ -1,0 +1,17 @@
+{
+  "name": "node_book",
+  "version": "1.0.0",
+  "description": "development for node foloving the book about node.js web development",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "filip@prozor.org",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
