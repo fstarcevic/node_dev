@@ -1,41 +1,31 @@
-const express = require('express')
-const expresshandlebars = require('express-handlebars')
+const express = require('express');
+const expressHandlebars = require('express-handlebars');
 
-/*const mysql = require('mysql')
-const mysqldevapi = require('@mysqldevapi')
-
-connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3308,
-    user: 'root',
-    password: 'Trek5200',
-    database: 'userprice'
-})
-*/
-const app = express()
-
-app.engine('handlebars', expressHandlebars({
+const app = express();
+const hbs = expressHandlebars.create({
     defaultLayout: 'main',
-}))
+});
 
-app.set('view engine', 'handlebars')
+app.engine('handlebars', hbs.engine);
 
-const port = process.env.PORT || 3000
+app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => res.render('home'))
+const port = process.env.PORT || 3000;
 
-app.get('/about', (req, res) => res.render('about'))
+app.get('/', (req, res) => res.render('home'));
+
+app.get('/about', (req, res) => res.render('about'));
 
 app.use((req, res) => {
-    res.type('text/plain')
-    res.status(404)
-    res.render('404')
-})
+    res.type('text/plain');
+    res.status(404);
+    res.render('404');
+});
 
 app.use((err, res, req, next) => {
-    console.error(err.message)
-    res.status(500)
-    res.render('500')
-})
+    console.error(err.message);
+    res.status(500);
+    res.render('500');
+});
 
-app.listen (port, () => console.log ('express started on server ' + 'pres ctrl-c for exit'))
+app.listen (port, () => console.log ('express started on server ' + 'pres ctrl-c for exit'));
