@@ -28,4 +28,6 @@ app.use((err, res, req, next) => {
     res.render('500');
 });
 
+app.use(express.static(__dirname + '/public'))
+
 app.listen (port, () => console.log ('express started on server ' + 'pres ctrl-c for exit'));
