@@ -1,9 +1,9 @@
 // Web infrastructure become significatn development platform. JS has leading role as dynamic script language on both client and server side. The API documentation is covered within Mozzila's MDN web doc.
 
-// DOM API, reminder for templatong engine - is used for easier appand UI mainatanance. DOM is objec thet represent the document displayed in one tab or page in web browser. So each tab
-// holds document which can be manipulated with DOM object and related methods. Each html document is defined with markup language which is not actualy programing language, but using DOM
-// and JS it can have form of programing language. 
-// node uses several moduls to start the server and to show the site including the logic. UI and front end keep separate forom backend logic. Do the fronend manipulation.
+// DOM API, reminder for templatong engine - is used for easier appand UI mainatanance. DOM is object that represent the document displayed in one tab or page in web browser. So each tab
+// holds document element which can be manipulated with DOM object and related methods. Each html document is defined with markup language which is not actualy programing language, but using DOM
+// and JS it can have form of programing language. Document object hast tree structure and JS has trough document object object element of page which can be referenced
+// node uses several moduls to start the server and to show the site including the logic. UI and frontend keep separate forom backend logic. Do the fronend manipulation.
 // when we do the page DOM API maps the page in tree structure. By calling each element we can manipulate those elements with JS methods. 
 // Finaly difference between function, var and const, let, class. Var and function key word defines the property in window() global object and the property can be access with window.f() or
 // window.c. On other hand let, const and class does not define the instance as property of global object but uses shared namespace. 
@@ -13,12 +13,12 @@
 // how web works, on request from browser the page or UI will be loaded including the script tag. The script starts executing when all resources are loaded when browser starts with load() on 
 // global object. Execution is going in two phases, and until both fases are finished and code executed, the UI is not responding on eny user action. JS is doing the task in single tread, goes
 // sequentialy fase one than two. Until last element is registerd in eventloop the UI starts to capture the user interaction. This should be taken in account when doing the app not to have
-// massive code on the beginig of the loading the html, css etc. WEB Worker mechanisam allow some form of concurency, actuali it establish the execution Isle for intensive operations. This Isle
+// massive code on the beginig of the loading the html, css etc. WEB Worker mechanisam allow some form of concurency, actualy it establish the execution Isle for intensive operations. This Isle
 // does not have any connection to "main" code but trough async messageing mecahnism exchanging informations. 
 
-// Events. Must understand that there is difference between node and browser event model. The browser event model i much reacher and complex. There is event type 
+// Events. Must understand that there is difference between node and browser event model. The browser event model is much reacher and complex. There is event type 
 // Browser is responsible to generate events on all elements in documents. the HTML document is loading and browser is compsing tha page and back structure in DOM. On DOM objects again
-// browser is generating the statuses and events on klik on hoover on ... on each element i tree generated from HTML document. Script is definig the what will happend with each event and what 
+// browser is generating the statuses and events on klik on hoover on ... on each element is tree generated from HTML document. Script is definig the what will happend with each event and what 
 // will browser do on each event capture.
 // EVENT TYPE is string which defines the event like "click", "hoover", "keydown" the list of events is available https://www.w3schools.com/jsref/dom_obj_event.asp
 // EVENT TARGET is object on which event apply like window.document.element <button> etc. The message event is applied on WEB WORKER when message form worker arrives or is send.
@@ -26,7 +26,7 @@
 // EVENT OBJECT is associated wirh event and keep all necessary informatio about event. This object is passed to hendler function as argument. From this object hendler gets all necessary
 // informations
 // EVENT PROPAGATION process - when event occure the propagation proces is importan as it propagate the event trough object tree from the element on which event ocure to document object
-// for object liek workers the propagation is not applied as thi is object not in tree so mesaage event will be only on that object. This mechanism enable to have optimisation
+// for object like workers the propagation is not applied as this is object not in tree so mesaage event will be only on that object. This mechanism enable to have optimisation
 // of event handler, for example to have single click event handle on document level of tree. Handler  can stop the propagation so if event ocures and start propagate ol element level the 
 // element method can stop the propagation and introduce the different method or handler 
 // event can be device dependant, device independant, UI,change state, API specific
@@ -71,7 +71,7 @@ b.addEventListener("click", ()=>{
 // custom event. The idea is that we create dispatcher which will create object and send event. Event hendler registered with addEventListener hendles this event further.
 // for using custom events we have CustomEvent() constructor, dispatchEvent() method and addEventListener() method
 // to create the custom event we use contructor to create event object. CustomEvent() arguments are string which defines the name of event and sencond is object which defines the properties
-// Properties are same as form Event() object, bubbles:true|false, cancelable: true|false, composed: true|false
+// Properties are same as from Event() object, bubbles:true|false, cancelable: true|false, composed: true|false
 // example
 
 document.dispatchEvent(new CustomEvent("busy", {detail:true}));                         // dispatch new custom event "busy" with status true
@@ -97,5 +97,34 @@ document.addEventListener("busy", (e)=>{                                        
 // to select the element in DOM we use querySelector() method which uses the CSS sleectors which identify the element or group of element in UI (DOM)
 // CSS selectors are div reperesenting the <div> tag, #nav representing element with id=nav and .warning any elemnt with "warning" in its class atribute
 // one method is also getElementById() and getElementByName() getElementByTagName() getElementByClassName() 
+// CSS selector - JS methos using method querySelector() an querySelectorAll(). Selector can be composit and take in account ore than oneproperty of TAG
+// selector a[href] for all  <a href = > tags with href propertie.
+// Using querySelector let b = document.querySelector("#byId") is the same let b = document.getElementById("Id")
+// let b = document.querySelector("*[name=ime]") is the same let b = document.getElementByName("ime") there are also getelementByTag() and getElementByClass()
+// innerHTML, outerHTML, adjastentHTML(),
+// Element clas defines getAttribute(), setAttribute(), hasAttribute(), removeAttribute(), there is also HTMLelement object hich represend the node lement and its properitie is value
+// of the element
+
+let image = document.querySelector("#main_image");
+let url = image.src;
+image.id = "main_image";
+
+
+let f = document.querySelector("form");
+f.action = "https://www.example.com/submit";
+f.method = "POST";
+
+// Document oobject has methods and properties for manipulating the whole tree ov the document and to add delete the nodes and content of the nodes (tags)
+// to creaate new element we can use createElement() method. example
+// Element class and instance of that class Element object represent the element of HTML document. Properties 
+
+
+let paragraph = document.createElement("p");
+let emphasis = document.createElement("em");
+
+emphasis.append("world");
+paragraph.append("hello ", emphasis, "!");
+paragraph.append(" ");
+paragraph.innerHTML;
 
 
